@@ -8,34 +8,43 @@ Project: tic_tac_toe
 
 def main():
     game_board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    print("Hello")
     turn = ""
     victory = False
     tie_game = False
     while not (victory or tie_game):
-        draw_board()
-        check_victory()
-        if victory:
-            print(f"Great job {turn}'s, you win!")
-            break
-        check_tie()
-        if tie_game:
-            print("Tie Game. You're both losers.")
-        switch_player()
+        draw_board(game_board)
+        # check_victory()
+        # if victory:
+        #     print(f"Great job {turn}'s, you win!")
+        #     break
+        # check_tie()
+        # if tie_game:
+        #     print("Tie Game. You're both losers.")
+        turn = switch_player(turn)
         choice = int(input(f"{turn}'s turn to choose a square (1-9): "))
-        update_board()
+        update_board(game_board, choice, turn)
 
 
-def draw_board():
-    pass
+def draw_board(board):
+    print(f"""    
+    {board[0]}|{board[1]}|{board[2]}
+    -+-+-
+    {board[3]}|{board[4]}|{board[5]}
+    -+-+-
+    {board[6]}|{board[7]}|{board[8]}
+    """)
 
 
-def update_board():
-    pass
+def update_board(board, choice, turn):
+    choice -= 1
+    board[choice] = turn
 
 
-def switch_player():
-    pass
+def switch_player(player):
+    if player == "x":
+        return "o"
+    else:
+        return "x"
 
 
 def check_victory():
